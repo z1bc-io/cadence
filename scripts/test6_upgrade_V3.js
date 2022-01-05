@@ -1,0 +1,14 @@
+
+const contract_config = require('../contract_config.json')
+const { ethers, upgrades } = require('hardhat');
+
+async function main () {
+  let marketContractAddress = contract_config['nftmarketaddress']
+  let nftContractAddress = contract_config['nftaddress']
+  const NFTMarketV3 = await ethers.getContractFactory('NFTMarketV3');
+  console.log('Test6 Upgrading NFTMarketV3...');
+  await upgrades.upgradeProxy(marketContractAddress, NFTMarketV3);
+  console.log('Test6 NFTMarketV3 upgraded');
+}
+
+main();
