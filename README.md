@@ -28,7 +28,7 @@ $ npx hardhat run scripts/test5_V2.js --network localhost
 
 $ npx hardhat run scripts/test6_upgrade_V3.js --network localhost
 
-$ npx hardhat run scripts/test7_V2.js --network localhost
+$ npx hardhat run scripts/test7_V3.js --network localhost
 
 # Configuration
 - !!!save your private key file in a '.secret' file and put it at the SlashFIRE folder
