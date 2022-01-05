@@ -14,21 +14,21 @@ $ npx hardhat node
 ## In a second terminal
 $ cd SlashFIRE
 
-$ npx hardhat run scripts/deploy_nft.js
+$ npx hardhat run scripts/deploy_nft.js --network localhost
 
-$ test1_create_nft.js
+$ npx hardhat run scripts/test1_create_nft.js --network localhost
 
-$ test2_deploy_more.js
+$ npx hardhat run scripts/test2_deploy_more.js --network localhost
 
-$ test3_royalties.js
+$ npx hardhat run scripts/test3_royalties.js --network localhost
 
-$ test4_upgrade_V2.js
+$ npx hardhat run scripts/test4_upgrade_V2.js --network localhost
 
-$ test5_V2.js
+$ npx hardhat run scripts/test5_V2.js --network localhost
 
-$ test6_upgrade_V3.js
+$ npx hardhat run scripts/test6_upgrade_V3.js --network localhost
 
-$ test7_V2.js
+$ npx hardhat run scripts/test7_V2.js --network localhost
 
 # Configuration
 - !!!save your private key file in a '.secret' file and put it at the SlashFIRE folder
