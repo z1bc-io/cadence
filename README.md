@@ -4,7 +4,7 @@ $ git clone git@github.com:tong2984a/cadence.git SlashFIRE
 
 $ cd SlashFIRE
 
-$ node version
+$ node --version
 > v16.10.0
 
 $ yarn

@@ -1,0 +1,161 @@
+$ cd SlashFIRE/
+$ npx hardhat run scripts/deploy_nft.js --network localhost
+Compiling 29 files with 0.8.4
+Warning: This declaration shadows an existing declaration.
+   --> contracts/NFT.sol:128:26:
+    |
+128 |     function createToken(string memory tokenURI) public returns (uint) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> contracts/NFT.sol:62:5:
+   |
+62 |     function tokenURI(uint256 tokenId)
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/Market.sol:123:5:
+    |
+123 |     address nftContract,
+    |     ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/Market.sol:141:5:
+    |
+141 |     uint price = idToMarketItem[itemId].price;
+    |     ^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/Market.sol:166:5:
+    |
+166 |     uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/MarketV2.sol:112:5:
+    |
+112 |     address nftContract,
+    |     ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/MarketV2.sol:130:5:
+    |
+130 |     uint price = idToMarketItem[itemId].price;
+    |     ^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/MarketV2.sol:155:5:
+    |
+155 |     uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/MarketV3.sol:122:5:
+    |
+122 |     address nftContract,
+    |     ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/MarketV3.sol:140:5:
+    |
+140 |     uint price = idToMarketItem[itemId].price;
+    |     ^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/MarketV3.sol:165:5:
+    |
+165 |     uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/NFT.sol:122:26:
+    |
+122 |     function royaltyInfo(uint256 _tokenId, uint256 _salePrice) external view
+    |                          ^^^^^^^^^^^^^^^^
+
+
+Warning: Function state mutability can be restricted to view
+  --> contracts/NFT.sol:84:5:
+   |
+84 |     function royaltiesReceiver() external returns(address) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/NFT.sol:137:5:
+    |
+137 |     function contractURI() public view returns (string memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Compilation finished successfully
+Deploying NFTMarket...
+nftMarket deployed to: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+nft deployed to: 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9
+$ npx hardhat run scripts/test1_create_nft.js --network localhost
+Test1 nft createToken tokenId: 1
+Test1 market createMarketItem tokenId: 1
+Test1 nft createToken tokenId: 2
+Test1 market createMarketItem tokenId: 2
+Test1 nft createToken tokenId: 3
+Test1 market createMarketItem tokenId: 3
+Test1 nft createToken tokenId: 4
+Test1 market createMarketItem tokenId: 4
+Test1 nft createToken tokenId: 5
+Test1 market createMarketItem tokenId: 5
+Test1 nft createToken tokenId: 6
+Test1 market createMarketItem tokenId: 6
+Test1 nft createToken tokenId: 7
+Test1 market createMarketItem tokenId: 7
+Test1 nft createToken tokenId: 8
+Test1 market createMarketItem tokenId: 8
+Test1 nft createToken tokenId: 9
+Test1 market createMarketItem tokenId: 9
+Test1 nft createToken tokenId: 10
+Test1 market createMarketItem tokenId: 10
+Test1 createAuction completed.
+$ npx hardhat run scripts/test2_deploy_more.js --network localhost
+Test2 nft deployed to: 0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9
+Test2 nft createToken tokenId: 1
+Test2 market createMarketItem: 1
+Test2 nft createToken tokenId: 2
+Test2 market createMarketItem: 2
+Test2 nft createToken tokenId: 3
+Test2 market createMarketItem: 3
+Test2 nft createToken tokenId: 4
+Test2 market createMarketItem: 4
+Test2 nft createToken tokenId: 5
+Test2 market createMarketItem: 5
+Test2 nft createToken tokenId: 6
+Test2 market createMarketItem: 6
+Test2 nft createToken tokenId: 7
+Test2 market createMarketItem: 7
+Test2 nft createToken tokenId: 8
+Test2 market createMarketItem: 8
+Test2 nft createToken tokenId: 9
+Test2 market createMarketItem: 9
+Test2 nft createToken tokenId: 10
+Test2 market createMarketItem: 10
+$ npx hardhat run scripts/test3_royalties.js --network localhost
+Test3 approved successfully
+$ npx hardhat run scripts/test4_upgrade_V2.js --network localhost
+Test4 Upgrading NFTMarketV2...
+Test4 NFTMarketV2 upgraded
+$ npx hardhat run scripts/test5_V2.js --network localhost
+Test5 listingPrice BigNumber { value: "25000000000000000" }
+Test5 version 2.0
+$ npx hardhat run scripts/test6_upgrade_V3.js --network localhost
+Test6 Upgrading NFTMarketV3...
+Test6 NFTMarketV3 upgraded
+$ npx hardhat run scripts/test7_V3.js --network localhost
+Test7 listingPrice BigNumber { value: "25000000000000001" }
+Test7 version 3.0
