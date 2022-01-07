@@ -5,7 +5,7 @@ require('@openzeppelin/hardhat-upgrades');
 
 const fs = require('fs');
 const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789";
-//const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
+const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 //const ALCHEMY_API_KEY = fs.readFileSync(".alchemy").toString().trim() || "";
 
 module.exports = {
@@ -23,11 +23,11 @@ module.exports = {
       url: `https://eth-ropsten.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
       accounts: [privateKey]
     },
+    */
     rinkeby: {
      url: `https://rinkeby.infura.io/v3/${infuraId}`, //Infura url with projectId
      accounts: [privateKey] // add the account that will deploy the contract (private key)
     },
-*/
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: [privateKey]
