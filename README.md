@@ -7,6 +7,9 @@
      $ node --version
      > v16.10.0
 
+     $ yarn --version
+     > 1.22.0
+
      $ yarn
 
      $ npx hardhat node
@@ -14,24 +17,24 @@
 ### In a second terminal
      $ cd SlashFIRE
 
-     $ npx hardhat run scripts/deploy_nft.js --network localhost
+     $ npx hardhat run scripts/deploy.js --network localhost
 
-     $ npx hardhat run scripts/test1_create_nft.js --network localhost
+     update your cli_config.json before running the followings (see Configuration below)
 
-     $ npx hardhat run scripts/test2_deploy_more.js --network localhost
+     $ npx hardhat run scripts/cli_1a_create_nft.js --network localhost
 
-     $ npx hardhat run scripts/test3_royalties.js --network localhost
+     $ npx hardhat run scripts/cli_1b_put_nft_on_market.js --network localhost
 
-     $ npx hardhat run scripts/test4_upgrade_V2.js --network localhost
+     $ npx hardhat run scripts/cli_2_fetch_nft.js --network localhost
 
-     $ npx hardhat run scripts/test5_V2.js --network localhost
+     $ npx hardhat run scripts/cli_3a_take_nft_off_market.js --network localhost
 
-     $ npx hardhat run scripts/test6_upgrade_V3.js --network localhost
-
-     $ npx hardhat run scripts/test7_V3.js --network localhost
+     $ npx hardhat run scripts/cli_3b_burn_nft.js --network localhost
 
 ### Configuration
 -  :exclamation: :point_right: save your private key file in a '.secret' file and put it at the SlashFIRE folder
+
+-  :exclamation: :point_right: use the cli_config.json to control how you manage your nfts by using the cli scripts.
 
 # Setup -- TestNet
 Here are some differences when compared to Setup -- localhost
@@ -42,20 +45,16 @@ Here are some differences when compared to Setup -- localhost
 - Remember to give yourself (i.e. your .secret account) some eth from online faucets.
 
 Refer to the above "In a second terminal"
-     $ cd SlashFIRE
+    $ cd SlashFIRE
 
-     $ npx hardhat run scripts/deploy_nft.js --network rinkeby
+    $ npx hardhat run scripts/deploy.js --network rinkeby
 
-     $ npx hardhat run scripts/test1_create_nft.js --network rinkeby
+    $ npx hardhat run scripts/cli_1a_create_nft.js --network rinkeby
 
-     $ npx hardhat run scripts/test2_deploy_more.js --network rinkeby
+    $ npx hardhat run scripts/cli_1b_put_nft_on_market.js --network rinkeby
 
-     $ npx hardhat run scripts/test3_royalties.js --network rinkeby
+    $ npx hardhat run scripts/cli_2_fetch_nft.js --network rinkeby
 
-     $ npx hardhat run scripts/test4_upgrade_V2.js --network rinkeby
+    $ npx hardhat run scripts/cli_3a_take_nft_off_market.js --network rinkeby
 
-     $ npx hardhat run scripts/test5_V2.js --network rinkeby
-
-     $ npx hardhat run scripts/test6_upgrade_V3.js --network rinkeby
-
-     $ npx hardhat run scripts/test7_V3.js --network rinkeby
+    $ npx hardhat run scripts/cli_3b_burn_nft.js --network rinkeby

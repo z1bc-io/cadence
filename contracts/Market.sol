@@ -7,45 +7,60 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-
-import { IAuctionHouse } from './interfaces/IAuctionHouse.sol';
+import "@openzeppelin/contracts-upgradeable/interfaces/IERC2981Upgradeable.sol";
 import "hardhat/console.sol";
 
-contract NFTMarket is IAuctionHouse, Initializable, ReentrancyGuardUpgradeable, UUPSUpgradeable, OwnableUpgradeable {
+contract NFTMarket is Initializable, ReentrancyGuardUpgradeable, UUPSUpgradeable, OwnableUpgradeable {
   using CountersUpgradeable for CountersUpgradeable.Counter;
   CountersUpgradeable.Counter private _itemIds;
   CountersUpgradeable.Counter private _itemsSold;
 
   uint256 listingPrice;
-  uint256 public duration;
   string public version;
 
-  // The minimum percentage difference between the last bid amount and the current bid
-  uint8 public minBidIncrementPercentage;
-
-  // The duration of a single auction
-  //uint256 public duration;
-
-  // The active auction
-  IAuctionHouse.Auction public auction;
+  bytes4 private constant _INTERFACE_ID_ERC2981 = 0x2a55205a;
 
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() initializer {}
 
-  function initialize(uint8 _minBidIncrementPercentage) public initializer {
+  function initialize() public initializer {
     __Ownable_init();
     __UUPSUpgradeable_init();
-    minBidIncrementPercentage = _minBidIncrementPercentage;
-    listingPrice = 0.025 ether;
-    duration = 1000 * 60 * 60 * 24;
+    listingPrice = 0.005 ether;
   }
 
 	function _authorizeUpgrade(address) internal override onlyOwner {
-    // in general, nothing needs to be done here, because this function
-    // will not be called when deploying the contract. However, resetting
-    // version to "1.0" ensures that downgrading via an upgrade is possible (although risky)
-		version = "1.0";
+		version = "2.0"; // this will actually be called when upgrading the contract.
 	}
+
+  /// @notice Transfers royalties to the rightsowner if applicable
+  /// @param tokenId - the NFT assed queried for royalties
+  /// @param grossSaleValue - the price at which the asset will be sold
+  /// @return netSaleAmount - the value that will go to the seller after
+  ///         deducting royalties
+  function _deduceRoyalties(address nftContract, uint256 tokenId, uint256 grossSaleValue)
+  internal returns (uint256 netSaleAmount) {
+      // Get amount of royalties to pays and recipient
+      (address royaltiesReceiver, uint256 royaltiesAmount) = IERC2981Upgradeable(nftContract).royaltyInfo(tokenId, grossSaleValue);
+      // Deduce royalties from sale value
+      uint256 netSaleValue = grossSaleValue - royaltiesAmount;
+      // Transfer royalties to rightholder if not zero
+      if (royaltiesAmount > 0) {
+          royaltiesReceiver.call{value: royaltiesAmount}('');
+      }
+      // Broadcast royalties payment
+      emit RoyaltiesPaid(tokenId, royaltiesAmount);
+      return netSaleValue;
+  }
+
+  /// @notice Checks if NFT contract implements the ERC-2981 interface
+  /// @param _contract - the address of the NFT contract to query
+  /// @return true if ERC-2981 interface is supported, false otherwise
+  function _checkRoyalties(address _contract) internal returns (bool) {
+      (bool success) = IERC2981Upgradeable(_contract).
+      supportsInterface(_INTERFACE_ID_ERC2981);
+      return success;
+  }
 
   struct MarketItem {
     uint itemId;
@@ -55,9 +70,6 @@ contract NFTMarket is IAuctionHouse, Initializable, ReentrancyGuardUpgradeable, 
     address payable owner;
     uint256 price;
     bool sold;
-    bool auction;
-    uint256 startTime;
-    uint256 endTime;
   }
 
   mapping(uint256 => MarketItem) private idToMarketItem;
@@ -69,9 +81,29 @@ contract NFTMarket is IAuctionHouse, Initializable, ReentrancyGuardUpgradeable, 
     address seller,
     address owner,
     uint256 price,
-    bool sold,
-    bool auction
+    bool sold
   );
+
+  event MarketItemSold (
+    uint indexed itemId,
+    address indexed nftContract,
+    uint256 indexed tokenId,
+    address seller,
+    address owner,
+    uint256 price,
+    bool sold
+  );
+
+  // Emitted when the stored value changes
+  event ValueChanged(uint256 value);
+
+  event RoyaltiesPaid(uint256 tokenId, uint value);
+
+  // Increments the stored value by 1
+  function incrementListingPrice() public {
+      listingPrice = listingPrice + 1;
+      emit ValueChanged(listingPrice);
+  }
 
   /* Returns the listing price of the contract */
   function getListingPrice() public view returns (uint256) {
@@ -97,10 +129,7 @@ contract NFTMarket is IAuctionHouse, Initializable, ReentrancyGuardUpgradeable, 
       payable(msg.sender),
       payable(address(0)),
       price,
-      false,
-      false,
-      0,
-      0
+      false
     );
 
     IERC721Upgradeable(nftContract).transferFrom(msg.sender, address(this), tokenId);
@@ -112,24 +141,8 @@ contract NFTMarket is IAuctionHouse, Initializable, ReentrancyGuardUpgradeable, 
       msg.sender,
       address(0),
       price,
-      false,
       false
     );
-  }
-
-  /* Creates the sale of a marketplace item */
-  /* Transfers ownership of the item, as well as funds between parties */
-  function createAuction(
-    address nftContract,
-    uint256 itemId
-    ) public payable nonReentrant {
-    //uint price = idToMarketItem[itemId].price;
-    //uint tokenId = idToMarketItem[itemId].tokenId;
-    //require(msg.value == price, "Please submit the asking price in order to complete the purchase");
-
-    idToMarketItem[itemId].auction = true;
-    idToMarketItem[itemId].startTime = block.timestamp;
-    idToMarketItem[itemId].endTime = idToMarketItem[itemId].startTime + duration;
   }
 
   /* Creates the sale of a marketplace item */
@@ -140,30 +153,29 @@ contract NFTMarket is IAuctionHouse, Initializable, ReentrancyGuardUpgradeable, 
     ) public payable nonReentrant {
     uint price = idToMarketItem[itemId].price;
     uint tokenId = idToMarketItem[itemId].tokenId;
-    //require(msg.value == price, "Please submit the asking price in order to complete the purchase");
 
-    bytes memory a = abi.encodePacked(idToMarketItem[itemId].endTime, ": Auction has not started yet");
-    require(0 < idToMarketItem[itemId].endTime, string(a));
-
-    bytes memory b = abi.encodePacked(idToMarketItem[itemId].endTime, ": Auction expired");
-    require(block.timestamp < idToMarketItem[itemId].endTime, string(b));
-
-    IAuctionHouse.Auction memory _auction = auction;
-    require(
-        msg.value >= _auction.amount + ((_auction.amount * minBidIncrementPercentage) / 100),
-        'Must send more than last bid by minBidIncrementPercentage amount'
-    );
-    auction.amount = msg.value;
-    auction.bidder = payable(msg.sender);
-
-    idToMarketItem[itemId].seller.transfer(msg.value);
+    uint256 saleValue = msg.value;
+    // Pay royalties if applicable
+    if (_checkRoyalties(nftContract)) {
+        saleValue = _deduceRoyalties(nftContract, tokenId, saleValue);
+    }
+    // Transfer funds to the seller
+    idToMarketItem[itemId].seller.call{value: saleValue}('');
     IERC721Upgradeable(nftContract).transferFrom(address(this), msg.sender, tokenId);
     idToMarketItem[itemId].owner = payable(msg.sender);
     idToMarketItem[itemId].sold = true;
-    idToMarketItem[itemId].auction = false;
     _itemsSold.increment();
-    payable(owner()).transfer(listingPrice);
     uint unsoldItemCount = _itemIds.current() - _itemsSold.current();
+
+    emit MarketItemSold(
+      itemId,
+      nftContract,
+      tokenId,
+      address(0),
+      msg.sender,
+      price,
+      true
+    );
   }
 
   /* Returns all unsold market items */
