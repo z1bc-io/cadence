@@ -2,7 +2,7 @@
 const { upgrades } = require('hardhat')
 const hre = require("hardhat")
 const fs = require('fs')
-const allowance_config = require('../allowance_config.json')
+const project_config = require('../project_config.json')
 
 async function main () {
   const NFTMarket = await hre.ethers.getContractFactory("NFTMarket")
@@ -20,12 +20,14 @@ async function main () {
   let owner = accounts[0]
   await nft.addMinter(owner.address)
 
-  let contract_owner = allowance_config[hre.network.name]['contract_owner']['address']
+  let contract_owner = project_config[hre.network.name]['contract_owner']['address']
+  let envChain = project_config[hre.network.name]['chain']
 
   let config = `
   export const nftmarketaddress = "${nftMarket.address}"
   export const nftaddress = "${nft.address}"
-  export const network_name = "${hre.network.name}"
+  export const envChainName = "${envChain.name}"
+  export const envChainId = "${envChain.id}"
   export const contract_owner = "${contract_owner}"
   `
   let data = JSON.stringify(config)
