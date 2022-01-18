@@ -2,7 +2,7 @@
 const { upgrades } = require('hardhat')
 const hre = require("hardhat")
 const fs = require('fs')
-const chain_config = require('../chain_config.json')
+const config = require('../config.json')
 
 async function main () {
   const NFTMarket = await hre.ethers.getContractFactory("NFTMarket")
@@ -20,27 +20,19 @@ async function main () {
   let owner = accounts[0]
   await nft.addMinter(owner.address)
 
-  let contract_owner = chain_config[hre.network.name]['contract_owner']['address']
-  let envChain = chain_config[hre.network.name]['chain']
+  let contract_owner = config['chains'][hre.network.name]['contract_owner']['address']
+  let envChain = config['chains'][hre.network.name]['chain']
 
-  let config = `
-  export const nftmarketaddress = "${nftMarket.address}"
-  export const nftaddress = "${nft.address}"
-  export const envChainName = "${envChain.name}"
-  export const envChainId = "${envChain.id}"
-  export const contract_owner = "${contract_owner}"
-  `
-  let data = JSON.stringify(config)
-  fs.writeFileSync('config.js', JSON.parse(data))
-
-  let contract_config = `
-  {
-    "nftmarketaddress" : "${nftMarket.address}",
-    "nftaddress" : "${nft.address}"
+  let nftmarketaddress = nftMarket.address
+  let nftaddress = nft.address
+  config['deployed'] = {
+    nftmarketaddress,
+    nftaddress,
+    envChain,
+    contract_owner
   }
-  `
-  let contract_data = JSON.stringify(contract_config)
-  fs.writeFileSync('config.json', JSON.parse(contract_data))
+
+  fs.writeFileSync('config.json', JSON.stringify(config, null, 4))
 }
 
 main();

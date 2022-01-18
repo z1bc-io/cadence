@@ -1,4 +1,4 @@
-const contract_config = require('../config.json')
+const config = require('../config.json')
 const cli_config = require('../cli_config.json')
 const { upgrades } = require('hardhat');
 const hre = require("hardhat");
@@ -7,8 +7,8 @@ async function main() {
   let count = cli_config['cli_1a_create_nft']['count']
   console.log(`\nCreating count:${count} ...`)
 
-  let marketContractAddress = contract_config['nftmarketaddress']
-  let nftContractAddress = contract_config['nftaddress']
+  let marketContractAddress = config['deployed']['nftmarketaddress']
+  let nftContractAddress = config['deployed']['nftaddress']
   const Market = await hre.ethers.getContractFactory("NFTMarket")
   const market = await Market.attach(marketContractAddress)
   const NFT = await hre.ethers.getContractFactory("NFT")
