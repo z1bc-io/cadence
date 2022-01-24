@@ -16,14 +16,6 @@ async function main() {
   const NFT = await hre.ethers.getContractFactory("NFT")
   const nft = await NFT.attach(nftContractAddress)
 
-  const tokenURI = "https://ipfs.infura.io/ipfs/QmUHuUuKPXQLgbRrkEceHAYNaH7HKxMbiraGMLVUh9MnoB"
-  const tokenDetails = {
-    content: {
-      membership: 'Lorem Ipsum',
-    },
-    date: Math.floor((Date.now() -  (3600 * 1000 * 24)) / 1000)
-  }
-
   let listingPrice = await market.getListingPrice()
   salePrice = ethers.utils.parseUnits(salePrice.toString(), 'ether')
 

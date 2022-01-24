@@ -14,7 +14,7 @@ async function main() {
   const NFT = await hre.ethers.getContractFactory("NFT")
   const nft = await NFT.attach(nftContractAddress)
 
-  const tokenURI = "https://ipfs.infura.io/ipfs/QmU3nVALJWomQSwqdn5MirCAwZRw7BynJFChLHUAeTEQn6"
+  const tokenURIHash = config['token']['tokenURI.json']['hash']
   const tokenDetails = {
     content: {
       membership: 'Lorem Ipsum',
@@ -28,7 +28,7 @@ async function main() {
   let event
   for (let i = 0; i < count; i++) {
     transaction = await nft.createToken(
-      tokenURI,
+      tokenURIHash,
       tokenDetails.content,
       tokenDetails.date,
     )
