@@ -1,0 +1,78 @@
+{
+    "token": {
+        "symbol": "FIRE",
+        "name": "SlashFIRE",
+        "price": "0.00001",
+        "wallet_watchAsset": {
+            "image": "https://ipfs.infura.io/ipfs/QmSeVUE9oHCuiszAUgfP9XNXtdZhxa2J827HDAyZDxUupe"
+        },
+        "tokenURI.json": {
+            "hash": "QmTEHTMgEKvf8ypt1HJU24j8HDabcGMcf8s3wp7kUMTQqJ"
+        },
+        "contractURI.json": {
+            "hash": "QmTMnkaUCLywWoYu5AUmqpVF9gnSCQSkATEphp2vNh7g9f"
+        }
+    },
+    "chains": {
+        "localhost": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "localhost",
+                "id": "0x7a69"
+            }
+        },
+        "ropsten": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "ropsten",
+                "id": "0x3"
+            }
+        },
+        "rinkeby": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "rinkeby",
+                "id": "0x4"
+            }
+        },
+        "matic": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "matic",
+                "id": "0x89"
+            }
+        },
+        "mumbai": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "mumbai",
+                "id": "0x13881"
+            }
+        }
+    },
+    "deployed": {
+        "nftmarketaddress": "",
+        "nftaddress": "",
+        "auctionAddress": "",
+        "envChain": {
+            "name": "localhost",
+            "id": "0x7a69"
+        },
+        "contract_owner": ""
+    }
+}

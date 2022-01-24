@@ -1,0 +1,78 @@
+{
+    "token": {
+        "symbol": "__YOUR TOKEN SYMBOL__",
+        "name": "__YOUR TOKEN NAME__",
+        "price": "__YOUR TOKEN UNIT PRICE__",
+        "wallet_watchAsset": {
+            "image": "__YOUR IMAGE URL__"
+        },
+        "tokenURI.json": {
+            "hash": "__YOUR FILE IPFS HASH__"
+        },
+        "contractURI.json": {
+            "hash": "__YOUR FILE IPFS HASH__"
+        }
+    },
+    "chains": {
+        "localhost": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "localhost",
+                "id": "0x7a69"
+            }
+        },
+        "ropsten": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "ropsten",
+                "id": "0x3"
+            }
+        },
+        "rinkeby": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "rinkeby",
+                "id": "0x4"
+            }
+        },
+        "matic": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "matic",
+                "id": "0x89"
+            }
+        },
+        "mumbai": {
+            "contract_owner": {
+                "name": "",
+                "address": ""
+            },
+            "chain": {
+                "name": "mumbai",
+                "id": "0x13881"
+            }
+        }
+    },
+    "deployed": {
+        "nftmarketaddress": "",
+        "nftaddress": "",
+        "auctionAddress": "",
+        "envChain": {
+            "name": "localhost",
+            "id": "0x7a69"
+        },
+        "contract_owner": ""
+    }
+}
