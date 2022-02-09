@@ -66,12 +66,12 @@
         }
     },
     "deployed": {
-        "nftmarketaddress": "",
-        "nftaddress": "",
-        "auctionAddress": "",
+        "nftmarketaddress": "0xf90A35ab844D565978988E8eDe924e704580Aa74",
+        "nftaddress": "0x14Ab031F23F844FEFd585103e849399b395E128B",
+        "auctionAddress": "0x39D657267941Eb7029b942b8dA2BDc4f7174f789",
         "envChain": {
-            "name": "localhost",
-            "id": "0x7a69"
+            "name": "rinkeby",
+            "id": "0x4"
         },
         "contract_owner": ""
     }

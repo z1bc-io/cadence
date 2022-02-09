@@ -165,4 +165,8 @@ contract Auction is Initializable, PullPaymentUpgradeable, ReentrancyGuardUpgrad
         _asyncTransfer(beneficiary, highestBid);
         IERC721Upgradeable(_nftContract).safeTransferFrom(address(this), highestBidder, _tokenId);
     }
+
+    function getAuctionEndTime() view public returns(uint){
+        return auctionEndTime;
+    }
 }

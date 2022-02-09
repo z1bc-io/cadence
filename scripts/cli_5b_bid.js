@@ -6,6 +6,7 @@ const hre = require("hardhat")
 async function main() {
   let accounts = await ethers.getSigners()
   let purchaser = accounts[1]
+  let owner = accounts[0]
 
   let value = cli_config['cli_5b_bid']['value_in_ether']
   const value_in_ether = ethers.utils.parseUnits(value.toString(), 'ether')
@@ -21,9 +22,19 @@ async function main() {
   let event
   console.log("\nPlacing First Bid")
 
+  let auctionEndTime
+
+   auctionEndTime = await auctionContract.getAuctionEndTime()
+
+  console.log("auctionEndTime:"+auctionEndTime)
+  console.log("auctionEndTime:"+new Date(auctionEndTime*1000))
+
   transaction = await auctionContract.connect(purchaser).bid({value: value_in_ether})
   tx = await transaction.wait()
   event = tx.events[0] //event HighestBidIncreased
+  console.log(tx);
+  console.log(event)
+  console.log(tx.events);
   console.log("bid bidder:", event.args['bidder'])
   console.log("bid amount:", event.args['amount'])
 

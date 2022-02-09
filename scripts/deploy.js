@@ -7,8 +7,11 @@ const config = require('../config.json')
 async function main () {
   let accounts = await ethers.getSigners()
   let owner = accounts[0]
-  let beneficiary = accounts[2]
+  let beneficiary = accounts[0]
   let duration = cli_config['deploy']['auction']['duration_in_seconds'] //unit in sec
+  console.log("Deploying...")
+  console.log("Contract owner:"+owner.address)
+  console.log("Contract beneficiary:"+beneficiary.address)
 
   const Auction = await hre.ethers.getContractFactory("Auction")
   console.log('Deploying Auction...')

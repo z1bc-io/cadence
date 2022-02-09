@@ -2,7 +2,7 @@
 ### In a first terminal
      $ git clone git@github.com:tong2984a/cadence.git SlashFIRE
 
-     $ cd SlashFIRE
+     $ cd CADENCE
 
      $ node --version
      > v16.10.0
@@ -15,7 +15,7 @@
      $ npx hardhat node
 
 ### In a second terminal
-     $ cd SlashFIRE
+     $ cd CADENCE
 
      $ npx hardhat run scripts/deploy.js --network localhost
 
@@ -45,7 +45,7 @@ Here are some differences when compared to Setup -- localhost
 - Remember to give yourself (i.e. your .secret account) some eth from online faucets.
 
 Refer to the above "In a second terminal"
-    $ cd SlashFIRE
+    $ cd CADENCE
 
     $ npx hardhat run scripts/deploy.js --network rinkeby
 

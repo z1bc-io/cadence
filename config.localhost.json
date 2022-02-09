@@ -36,8 +36,8 @@
         },
         "rinkeby": {
             "contract_owner": {
-                "name": "",
-                "address": ""
+                "name": "Candece Dev1",
+                "address": "0xF0b67339Ee488BceB4B0026399d1F68f312020F6"
             },
             "chain": {
                 "name": "rinkeby",
