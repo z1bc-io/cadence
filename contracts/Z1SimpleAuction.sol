@@ -1,3 +1,6 @@
+pragma solidity ^0.8.3;
+
+/*
 contract Z1SimpleAuction {
     // Parameters of the auction. Times are either
     // absolute unix timestamps (seconds since 1970-01-01)
@@ -32,7 +35,7 @@ contract Z1SimpleAuction {
         address _beneficiary
     ) {
         beneficiary = _beneficiary;
-        auctionStart = now;
+        auctionStart = block.timestamp;
         biddingTime = _biddingTime;
     }
 
@@ -44,7 +47,7 @@ contract Z1SimpleAuction {
         // No arguments are necessary, all
         // information is already part of
         // the transaction.
-        if (now > auctionStart + biddingTime) {
+        if (block.timestamp > auctionStart + biddingTime) {
             // Revert the call if the bidding
             // period is over.
             throw;
@@ -54,7 +57,7 @@ contract Z1SimpleAuction {
             // money back.
             throw;
         }
-        if (highestBidder != 0) {
+        if (highestBidder != address(0)) {
             // Sending back the money by simply using
             // highestBidder.send(highestBid) is a security risk
             // because it can be prevented by the caller by e.g.
@@ -69,13 +72,13 @@ contract Z1SimpleAuction {
 
     /// Withdraw a bid that was overbid.
     function withdraw() {
-        var amount = pendingReturns[msg.sender];
+        uint amount = pendingReturns[msg.sender];
         // It is important to set this to zero because the recipient
         // can call this function again as part of the receiving call
         // before `send` returns.
         pendingReturns[msg.sender] = 0;
         if (!msg.sender.send(amount))
-            throw; // If anything fails, this will revert the changes above
+            revert(); // If anything fails, this will revert the changes above
     }
 
     /// End the auction and send the highest bid
@@ -94,26 +97,15 @@ contract Z1SimpleAuction {
         // contracts, they also have to be considered interaction with
         // external contracts.
         // 1. Conditions
-        if (now <= auctionStart + biddingTime)
-            throw; // auction did not yet end
-        if (ended)
-            throw; // this function has already been called
+        require(now > auctionStart + biddingTime);
+        require(!ended);
         // 2. Effects
         ended = true;
         AuctionEnded(highestBidder, highestBid);
 
         // 3. Interaction
-        if (!beneficiary.send(highestBid))
-            throw;
+        require(beneficiary.send(highestBid));
     }
 
-    function () {
-        // This function gets executed if a
-        // transaction with invalid data is sent to
-        // the contract or just ether without data.
-        // We revert the send so that no-one
-        // accidentally loses money when using the
-        // contract.
-        throw;
-    }
 }
+*/

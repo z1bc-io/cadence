@@ -25,8 +25,12 @@ contract MKNFT is ERC721URIStorage, ERC2981, Ownable  {
         _setDefaultRoyalty(_receiver, _royaltyFee); //Fee in basis points
     }
 
-    function setPassword(uint index, string memory _password) public onlyOwner {
-        mintPasswords[index] = keccak256(abi.encodePacked(_password));
+    function setPasswordHash(uint index, bytes32 _hash) public onlyOwner {
+        mintPasswords[index] = _hash;
+    }
+
+    function setPasswordHashArray(bytes32[52] memory _hashArray) public onlyOwner {
+        mintPasswords = _hashArray;
     }
 
     function checkPassword(uint index, string memory _password) public view returns (bool){

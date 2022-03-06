@@ -1,0 +1,119 @@
+{
+    "defaultNetwork": "mumbai",
+    "networks": {
+        "hardhat": {
+            "hardfork": "berlin",
+            "blockGasLimit": 12450000,
+            "gasPrice": 8000000000,
+            "chainId": 31337,
+            "throwOnTransactionFailures": true,
+            "throwOnCallFailures": true,
+            "allowUnlimitedContractSize": false,
+            "mining": {
+                "auto": true,
+                "interval": 0
+            },
+            "accounts": {
+                "initialIndex": 0,
+                "count": 20,
+                "path": "m/44'/60'/0'/0",
+                "mnemonic": "test test test test test test test test test test test junk",
+                "accountsBalance": "10000000000000000000000"
+            },
+            "loggingEnabled": false,
+            "gasMultiplier": 1,
+            "minGasPrice": "00",
+            "gas": 12450000,
+            "initialDate": "2022-03-06T21:14:21.409Z"
+        },
+        "localhost": {
+            "accounts": "remote",
+            "gas": "auto",
+            "gasPrice": "auto",
+            "gasMultiplier": 1,
+            "httpHeaders": {},
+            "timeout": 20000,
+            "url": "http://127.0.0.1:8545"
+        },
+        "rinkeby": {
+            "accounts": [
+                "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
+            ],
+            "gas": "auto",
+            "gasPrice": "auto",
+            "gasMultiplier": 1,
+            "httpHeaders": {},
+            "timeout": 20000,
+            "url": "https://rinkeby.infura.io/v3/835f0f4bfa9f4765bd7a5825bb0089b1"
+        },
+        "mumbai": {
+            "accounts": [
+                "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
+            ],
+            "gas": "auto",
+            "gasPrice": "auto",
+            "gasMultiplier": 1,
+            "httpHeaders": {},
+            "timeout": 20000,
+            "url": "https://rpc-mumbai.maticvigil.com"
+        },
+        "matic": {
+            "accounts": [
+                "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
+            ],
+            "gas": "auto",
+            "gasPrice": "auto",
+            "gasMultiplier": 1,
+            "httpHeaders": {},
+            "timeout": 20000,
+            "url": "https://rpc-mainnet.maticvigil.com"
+        }
+    },
+    "solidity": {
+        "compilers": [
+            {
+                "version": "0.8.4",
+                "settings": {
+                    "optimizer": {
+                        "enabled": true,
+                        "runs": 200
+                    },
+                    "outputSelection": {
+                        "*": {
+                            "*": [
+                                "abi",
+                                "evm.bytecode",
+                                "evm.deployedBytecode",
+                                "evm.methodIdentifiers"
+                            ],
+                            "": [
+                                "ast"
+                            ]
+                        }
+                    }
+                }
+            }
+        ],
+        "overrides": {}
+    },
+    "paths": {
+        "root": "/Users/swong/git/cadence",
+        "configFile": "/Users/swong/git/cadence/hardhat.config.js",
+        "sources": "/Users/swong/git/cadence/contracts",
+        "cache": "/Users/swong/git/cadence/cache",
+        "artifacts": "/Users/swong/git/cadence/artifacts",
+        "tests": "/Users/swong/git/cadence/test"
+    },
+    "mocha": {
+        "timeout": 20000
+    },
+    "deployed": {
+        "nftmarketaddress": "0xe90Cb3f1D9f8C0F66112d335c9BBA82CF4112f19",
+        "nftaddress": "0x9de48Db1e217770175980819C01403E92405f7fb",
+        "envChain": {
+            "name": "rinkeby",
+            "id": "0x4"
+        },
+        "contract_owner": "0x31b4cE41b12eBb0d1E7beEE20997069EBC20545D"
+    }
+}

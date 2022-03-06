@@ -16,16 +16,30 @@ async function main() {
   let contract_owner = monkey_config[hre.network.name]['contract_owner']['address']
   let envChain = monkey_config[hre.network.name]['chain']
 
+  let nftmarketaddress = nftMarket.address
+  let nftaddress = nft.address
+  
+  config['deployed'] = {
+    nftmarketaddress,
+    nftaddress,
+    envChain,
+    contract_owner
+  }
+
+  fs.writeFileSync('mkconfig.json', JSON.stringify(config, null, 4))
+
+  /*
   let config = `
   export const nftmarketaddress = "${nftMarket.address}"
   export const nftaddress = "${nft.address}"
   export const envChainName = "${envChain.name}"
   export const envChainId = "${envChain.id}"
   export const contract_owner = "${contract_owner}"
-  `
 
   let data = JSON.stringify(config)
-  fs.writeFileSync('mkconfig.js', JSON.parse(data))
+  fs.writeFileSync('mkconfig.json', JSON.parse(data))
+  */
+
 }
 
 main()
