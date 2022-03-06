@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@openzeppelin/contracts": "^4.2.0",
+    "@openzeppelin/contracts": "^4.5.0",
     "axios": "^0.21.1",
     "chai": "^4.3.4",
     "electron": "^15.3.1",
