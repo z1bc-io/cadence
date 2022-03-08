@@ -9,7 +9,7 @@ const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 //const ALCHEMY_API_KEY = fs.readFileSync(".alchemy").toString().trim() || "";
 
 module.exports = {
-  defaultNetwork: "mumbai",
+  defaultNetwork: "rinkeby",
   networks: {
     hardhat: {
       chainId: 31337
@@ -26,7 +26,7 @@ module.exports = {
     */
     rinkeby: {
      url: `https://rinkeby.infura.io/v3/${infuraId}`, //Infura url with projectId
-     accounts: [privateKey] // add the account that will deploy the contract (private key)
+     accounts: [privateKey], // add the account that will deploy the contract (private key)     
     },
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",

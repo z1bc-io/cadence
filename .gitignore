@@ -13,3 +13,4 @@ cache
 
 # Dependency directories
 node_modules
+.nftpassword.json

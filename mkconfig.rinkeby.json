@@ -1,5 +1,5 @@
 {
-    "defaultNetwork": "mumbai",
+    "defaultNetwork": "rinkeby",
     "networks": {
         "hardhat": {
             "hardfork": "berlin",
@@ -24,7 +24,7 @@
             "gasMultiplier": 1,
             "minGasPrice": "00",
             "gas": 12450000,
-            "initialDate": "2022-03-06T21:14:21.409Z"
+            "initialDate": "2022-03-07T22:24:40.793Z"
         },
         "localhost": {
             "accounts": "remote",
@@ -39,7 +39,7 @@
             "accounts": [
                 "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
             ],
-            "gas": "auto",
+            "gas": 3000000,
             "gasPrice": "auto",
             "gasMultiplier": 1,
             "httpHeaders": {},

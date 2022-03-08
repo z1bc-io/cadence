@@ -18,6 +18,8 @@ async function main() {
 
   let nftmarketaddress = nftMarket.address
   let nftaddress = nft.address
+
+
   
   config['deployed'] = {
     nftmarketaddress,
@@ -26,7 +28,7 @@ async function main() {
     contract_owner
   }
 
-  fs.writeFileSync('mkconfig.json', JSON.stringify(config, null, 4))
+  fs.writeFileSync(`mkconfig.${hre.network.name}.json`, JSON.stringify(config, null, 4))
 
   /*
   let config = `
