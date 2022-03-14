@@ -24,7 +24,7 @@
             "gasMultiplier": 1,
             "minGasPrice": "00",
             "gas": 12450000,
-            "initialDate": "2022-03-07T22:24:26.141Z"
+            "initialDate": "2022-03-14T20:54:07.981Z"
         },
         "localhost": {
             "accounts": "remote",
@@ -39,7 +39,7 @@
             "accounts": [
                 "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
             ],
-            "gas": 3000000,
+            "gas": "auto",
             "gasPrice": "auto",
             "gasMultiplier": 1,
             "httpHeaders": {},
@@ -108,8 +108,8 @@
         "timeout": 20000
     },
     "deployed": {
-        "nftmarketaddress": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
-        "nftaddress": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+        "nftmarketaddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        "nftaddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
         "envChain": {
             "name": "localhost",
             "id": "0x7a69"

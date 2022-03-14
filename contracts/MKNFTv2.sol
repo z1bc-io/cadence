@@ -9,9 +9,14 @@ import "@openzeppelin/contracts/token/common/ERC2981.sol";
 
 import "hardhat/console.sol";
 
-contract MKNFT is ERC721URIStorage, ERC2981, Ownable  {
+//https://docs.ethers.io/v4/cookbook-signing.html
+
+
+contract MKNFTv2 is ERC721URIStorage, ERC2981, Ownable  {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
     address contractAddress;
-    mapping (uint256 => bytes32) mintPasswords;
+    bytes32 [52] mintPasswords; 
     string myContractURI = "https://firebasestorage.googleapis.com/v0/b/pay-a-vegan.appspot.com/o/nft%2Fmonkey-contract.json?alt=media&token=0c19430b-2c88-4b3c-89f2-92d85ffee1d1";
 
     constructor(address marketplaceAddress) ERC721("Monkey King", "MONKEYKING") {
@@ -23,24 +28,30 @@ contract MKNFT is ERC721URIStorage, ERC2981, Ownable  {
         _setDefaultRoyalty(_receiver, _royaltyFee); //Fee in basis points
     }
 
-    function setPasswordHash(uint256 tokenId, bytes32 _hash) public onlyOwner {
-        mintPasswords[tokenId] = _hash;
+    function setPasswordHash(uint index, bytes32 _hash) public onlyOwner {
+        mintPasswords[index] = _hash;
     }
 
-    function checkPassword(uint256 tokenId, string memory _password) public view returns (bool){
-        return (keccak256(abi.encodePacked(_password)) == mintPasswords[tokenId]);
+    function setPasswordHashArray(bytes32[52] memory _hashArray) public onlyOwner {
+        mintPasswords = _hashArray;
+    }
+
+    function checkPassword(uint index, string memory _password) public view returns (bool){
+        return (keccak256(abi.encodePacked(_password)) == mintPasswords[index]);
     } 
 
-    function createToken(uint256 tokenId, string memory _password, string memory tokenURI) public returns (uint) {
+    function createToken(string memory _password, string memory tokenURI) public returns (uint) {
 
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
 
         //newItemId starts with 1, password index starts with 0.
-        require(checkPassword(tokenId, _password), "incorrect password");
+        require(checkPassword(newItemId-1, _password), "incorrect password");
 
-        _mint(msg.sender, tokenId);
-        _setTokenURI(tokenId, tokenURI);
+        _mint(msg.sender, newItemId);
+        _setTokenURI(newItemId, tokenURI);
         setApprovalForAll(contractAddress, true);
-        return tokenId;
+        return newItemId;
     }
 
     function burn(uint256 tokenId) public onlyOwner{

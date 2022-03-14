@@ -6,6 +6,8 @@ const fs = require('fs');
  * 
  * Only run this when need to generate new passwords
  * This file also calculate the correctponding hash to be used to import to the smart contract
+ * 
+ * Password index starts with 1. (not zero)
  ***********************************/
 
 const NUMPASSWORD = 52
@@ -23,11 +25,11 @@ function genNewPassword(){
 
 async function main() {
   let passwords = [];
-  for (var i=0; i < NUMPASSWORD ; i++){
+  for (var i=1; i < NUMPASSWORD+1 ; i++){
     let pw = genNewPassword();
     let hash = web3.utils.soliditySha3(pw)
     let obj = {
-      'index':i,
+      'tokenId':i,
       'password':pw,
       'hash':hash,  
     }

@@ -10,7 +10,7 @@ const config = require(`../mkconfig.${hre.network.name}.json`)
  */
 const fromIndex = 0;
 const toIndex = nftPasswords.length;
-const updatePassword = false; //true == update password on chain, false == check only.
+const updatePassword = true; //true == update password on chain, false == check only.
 
 
 async function main() {
@@ -20,18 +20,18 @@ async function main() {
 
 
   for (var i=fromIndex;i< toIndex;i++){
-    let index = nftPasswords[i].index;
+    let tokenId = nftPasswords[i].tokenId;
     let password = nftPasswords[i].password;
     let hash = nftPasswords[i].hash;
-    console.log(i+","+password+","+hash);
+    console.log(tokenId+","+password+","+hash);
     if (updatePassword){
       console.log("Setting hash...");
-      transaction = await nftContract.setPasswordHash(index , hash);
+      transaction = await nftContract.setPasswordHash(tokenId , hash);
       tx = await transaction.wait()
       console.log(tx.events);  
     }
     console.log("Checking password...");
-    let check = await nftContract.checkPassword(index, password);
+    let check = await nftContract.checkPassword(tokenId, password);
     console.log("Checked="+check);
     if (!check) break
   }

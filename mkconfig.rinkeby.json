@@ -24,7 +24,7 @@
             "gasMultiplier": 1,
             "minGasPrice": "00",
             "gas": 12450000,
-            "initialDate": "2022-03-07T22:24:40.793Z"
+            "initialDate": "2022-03-14T21:05:23.791Z"
         },
         "localhost": {
             "accounts": "remote",
@@ -39,7 +39,7 @@
             "accounts": [
                 "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
             ],
-            "gas": 3000000,
+            "gas": "auto",
             "gasPrice": "auto",
             "gasMultiplier": 1,
             "httpHeaders": {},
@@ -108,8 +108,8 @@
         "timeout": 20000
     },
     "deployed": {
-        "nftmarketaddress": "0xe90Cb3f1D9f8C0F66112d335c9BBA82CF4112f19",
-        "nftaddress": "0x9de48Db1e217770175980819C01403E92405f7fb",
+        "nftmarketaddress": "0x1749be0A3613E493eD2A891Ae95d4aCe0DF1A7Af",
+        "nftaddress": "0x50eC9A68bEb614ab7882dB87e5AE43Fc8aaEA81c",
         "envChain": {
             "name": "rinkeby",
             "id": "0x4"

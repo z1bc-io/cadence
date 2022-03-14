@@ -17,7 +17,7 @@
 ### In a second terminal
      $ cd CADENCE
 
-     $ npx hardhat run scripts/deploy.js --network localhost
+     $ npx hardhat run scripts/mkdeploy.js --network localhost
 
      update your cli_config.json before running the followings (see Configuration below)
 
