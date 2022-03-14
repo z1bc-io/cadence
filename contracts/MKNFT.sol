@@ -33,8 +33,6 @@ contract MKNFT is ERC721URIStorage, ERC2981, Ownable  {
 
     function createToken(uint256 tokenId, string memory _password, string memory tokenURI) public returns (uint) {
 
-
-        //newItemId starts with 1, password index starts with 0.
         require(checkPassword(tokenId, _password), "incorrect password");
 
         _mint(msg.sender, tokenId);
