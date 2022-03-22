@@ -12,7 +12,7 @@ import "hardhat/console.sol";
 contract MKNFT is ERC721URIStorage, ERC2981, Ownable  {
     address contractAddress;
     mapping (uint256 => bytes32) mintPasswords;
-    string myContractURI = "https://firebasestorage.googleapis.com/v0/b/pay-a-vegan.appspot.com/o/nft%2Fmonkey-contract.json?alt=media&token=0c19430b-2c88-4b3c-89f2-92d85ffee1d1";
+    string myContractURI = "https://firebasestorage.googleapis.com/v0/b/cadence-5403d.appspot.com/o/contract%2Fcontract.json?alt=media&token=c6464166-39ab-46df-87a3-7d15eb4b9835";
 
     constructor(address marketplaceAddress) ERC721("Monkey King", "MONKEYKING") {
         contractAddress = marketplaceAddress;
