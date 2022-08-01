@@ -58,3 +58,26 @@ Refer to the above "In a second terminal"
     $ npx hardhat run scripts/cli_3a_take_nft_off_market.js --network rinkeby
 
     $ npx hardhat run scripts/cli_3b_burn_nft.js --network rinkeby
+
+# MK - Deploy New Test
+$ npx hardhat run scripts/mkdeploy.js --network rinkeby
+
+## create new passwords 
+Update cli_genPasswords.js 
+const NUMPASSWORD = 52
+
+$ npx hardhat run scripts/cli_genPasswords.js 
+
+New passwords are stored in .nftpassword.json
+
+## push passwords to contracts
+In cli_setPasswords.js
+
+const fromIndex = 0;
+const toIndex = nftPasswords.length;
+
+const updatePassword = false; //true == update password on chain, false == check only.
+
+
+$ npx hardhat run scripts/cli_setPasswords.js --network rinkeby
+
