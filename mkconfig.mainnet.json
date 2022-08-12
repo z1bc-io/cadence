@@ -24,7 +24,7 @@
             "gasMultiplier": 1,
             "minGasPrice": "00",
             "gas": 12450000,
-            "initialDate": "2022-08-12T20:14:02.316Z"
+            "initialDate": "2022-08-12T20:32:53.334Z"
         },
         "localhost": {
             "accounts": "remote",
@@ -123,11 +123,11 @@
         "timeout": 20000
     },
     "deployed": {
-        "nftmarketaddress": "0x8cdaA7a5f279b27689A6b8BCea18caB783b50dEc",
-        "nftaddress": "0x69643636cddE016d4882ef3aCfD24440884f39eb",
+        "nftmarketaddress": "0xf90A35ab844D565978988E8eDe924e704580Aa74",
+        "nftaddress": "0x87987a1d365B94FD096FDaB667eA9f30497DE72a",
         "envChain": {
-            "name": "rinkeby",
-            "id": "0x4"
+            "name": "mainnet",
+            "id": "0x1"
         },
         "contract_owner": "0x31b4cE41b12eBb0d1E7beEE20997069EBC20545D"
     }

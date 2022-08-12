@@ -81,3 +81,19 @@ const updatePassword = false; //true == update password on chain, false == check
 
 $ npx hardhat run scripts/cli_setPasswords.js --network rinkeby
 
+## Mainnet deployment
+npx hardhat run scripts/mkdeploy.js --network mainnet
+nftMarket deployed to: 0xf90A35ab844D565978988E8eDe924e704580Aa74
+nft deployed to: 0x87987a1d365B94FD096FDaB667eA9f30497DE72a
+
+#Verify contract
+npx hardhet verify --network mainnet 0x87987a1d365B94FD096FDaB667eA9f30497DE72a 0xf90A35ab844D565978988E8eDe924e704580Aa74
+
+#Generate new passwords
+npx hardhat run scripts/cli_genPasswords.js 
+
+#Set passwords to mainnet
+# Make sure to update the parameters in setPasswords.js
+npx hardhat run scripts/cli_setPasswords.js --network mainnet
+
+#Finally change owner to hardware wallet.

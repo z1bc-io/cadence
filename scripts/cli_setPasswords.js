@@ -14,7 +14,7 @@ const fromIndex = 0;
 //Index ends with nftPasswords.length
 const toIndex = nftPasswords.length;
 
-const updatePassword = true; //true == update password on chain, false == check only.
+const updatePassword = false; //true == update password on chain, false == check only.
 
 
 async function main() {
