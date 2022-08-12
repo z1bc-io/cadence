@@ -9,6 +9,16 @@
       "id" : "0x7a69"
     }
   },
+  "mainnet": {
+    "contract_owner" : {
+      "name" : "Cadence Dev1",
+      "address" : "0x31b4cE41b12eBb0d1E7beEE20997069EBC20545D"
+    },
+    "chain" : {
+      "name" : "mainnet",
+      "id" : "0x1"
+    }
+  },
   "ropsten": {
     "contract_owner" : {
       "name" : "Treasury",

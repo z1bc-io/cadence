@@ -1,6 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require('@nomiclabs/hardhat-ethers');
 require('@openzeppelin/hardhat-upgrades');
+require('@nomiclabs/hardhat-etherscan');
 // hardhat.config.ts
 
 const fs = require('fs');
@@ -14,16 +15,15 @@ module.exports = {
     hardhat: {
       chainId: 31337
     },
-  /*
     mainnet: {
-      url: `https://rinkeby.infura.io/v3/${infuraId}`, // or any other JSON-RPC provider
+      url: `https://mainnet.infura.io/v3/${infuraId}`, // or any other JSON-RPC provider
       accounts: [privateKey]
     },
-    ropsten: {
+/*    ropsten: {
       url: `https://eth-ropsten.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
       accounts: [privateKey]
     },
-    */
+*/    
     rinkeby: {
      url: `https://rinkeby.infura.io/v3/${infuraId}`, //Infura url with projectId
      accounts: [privateKey], // add the account that will deploy the contract (private key)     
@@ -36,6 +36,9 @@ module.exports = {
       url: "https://rpc-mainnet.maticvigil.com",
       accounts: [privateKey]
     }
+  },
+  etherscan: {
+    apiKey: "5XSKX99TC688PD63RBAFC4QE5SCZHHCKUZ"
   },
   solidity: {
     version: "0.8.4",

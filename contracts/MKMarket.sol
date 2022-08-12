@@ -90,20 +90,6 @@ contract MKMarket is ReentrancyGuard {
     );
   }
 
-  /* Creates the sale of a marketplace item */
-  /* Transfers ownership of the item, as well as funds between parties */
-  function createAuction(
-    address nftContract,
-    uint256 itemId
-    ) public payable nonReentrant {
-    uint price = idToMarketItem[itemId].price;
-    uint tokenId = idToMarketItem[itemId].tokenId;
-    require(msg.value == price, "Please submit the asking price in order to complete the purchase");
-
-    idToMarketItem[itemId].auction = true;
-    idToMarketItem[itemId].startTime = block.timestamp;
-    idToMarketItem[itemId].endTime = idToMarketItem[itemId].startTime + duration;
-  }
 
   function createBid(
     uint256 price

@@ -24,7 +24,7 @@
             "gasMultiplier": 1,
             "minGasPrice": "00",
             "gas": 12450000,
-            "initialDate": "2022-03-29T14:16:36.001Z"
+            "initialDate": "2022-08-12T19:45:28.107Z"
         },
         "localhost": {
             "accounts": "remote",
@@ -34,6 +34,17 @@
             "httpHeaders": {},
             "timeout": 20000,
             "url": "http://127.0.0.1:8545"
+        },
+        "mainnet": {
+            "accounts": [
+                "0x527fa40c4185d2e0d076bd94e1072dc40501a8cc4d8b964c6dbcf76363986568"
+            ],
+            "gas": "auto",
+            "gasPrice": "auto",
+            "gasMultiplier": 1,
+            "httpHeaders": {},
+            "timeout": 20000,
+            "url": "https://rinkeby.infura.io/v3/835f0f4bfa9f4765bd7a5825bb0089b1"
         },
         "rinkeby": {
             "accounts": [
@@ -68,6 +79,10 @@
             "timeout": 20000,
             "url": "https://rpc-mainnet.maticvigil.com"
         }
+    },
+    "etherscan": {
+        "apiKey": "5XSKX99TC688PD63RBAFC4QE5SCZHHCKUZ",
+        "customChains": []
     },
     "solidity": {
         "compilers": [
@@ -108,8 +123,8 @@
         "timeout": 20000
     },
     "deployed": {
-        "nftmarketaddress": "0x12Edd5858f4fC7722D1f93db278ef696d7Fd4446",
-        "nftaddress": "0x13F117Cc196d49EcBF051a8B8ABE3f811890D9cE",
+        "nftmarketaddress": "0x31FAEaA60f3a0D9B9ba054eE57003e984508E350",
+        "nftaddress": "0x478EECCC57972C2e258658d3d7207ce76b5Ba1f2",
         "envChain": {
             "name": "rinkeby",
             "id": "0x4"
